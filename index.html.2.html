@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAKOMOOD · Makaroni Mix Rasa</title>
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fef6f0;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* palette */
+    :root {
+      --red: #D32F2F;
+      --red-dark: #B71C1C;
+      --yellow: #FBC02D;
+      --yellow-light: #FFF3E0;
+      --cream: #fff9f2;
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    /* header */
+    header {
+      background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 2px solid var(--yellow);
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 16px 0;
+    }
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--red-dark);
+    }
+    .logo span {
+      color: var(--yellow);
+      background: var(--red-dark);
+      padding: 0 8px;
+      border-radius: 30px;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #222;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover {
+      color: var(--red);
+      border-bottom: 2px solid var(--yellow);
+    }
+    .nav-cta {
+      background: var(--red);
+      color: white !important;
+      padding: 8px 18px;
+      border-radius: 40px;
+      border-bottom: none !important;
+      font-weight: 600;
+    }
+    .nav-cta:hover {
+      background: var(--red-dark) !important;
+      color: white !important;
+    }
+    /* sections */
+    section {
+      padding: 56px 0;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title i {
+      color: var(--red);
+      background: var(--yellow);
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+    }
+    .badge-red {
+      background: var(--red);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+    /* HERO */
+    .hero {
+      background: linear-gradient(145deg, #fff3e0, #ffebd0);
+      border-radius: 36px;
+      padding: 48px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(251, 192, 45, 0.3);
+    }
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .hero-text h1 .highlight {
+      background: var(--yellow);
+      padding: 0 10px;
+      display: inline-block;
+      border-radius: 20px;
+      color: var(--red-dark);
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      margin: 20px 0 28px;
+      max-width: 500px;
+      color: #3e2e1f;
+    }
+    .hero-cta {
+      background: var(--red);
+      border: none;
+      padding: 14px 38px;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 0 #8b1a1a;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .hero-cta:hover {
+      background: var(--red-dark);
+      transform: translateY(2px);
+      box-shadow: 0 4px 0 #5f1111;
+    }
+    .hero-img {
+      background: white;
+      padding: 12px 20px;
+      border-radius: 80px;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--red-dark);
+      box-shadow: var(--shadow);
+      border: 2px dashed var(--yellow);
+    }
+    .hero-img i {
+      margin: 0 6px;
+      color: var(--yellow);
+    }
+    /* keunggulan */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .card-keunggulan {
+      background: white;
+      padding: 24px 16px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--yellow);
+      transition: 0.15s;
+    }
+    .card-keunggulan i {
+      font-size: 2.2rem;
+      color: var(--red);
+      background: var(--yellow-light);
+      padding: 14px;
+      border-radius: 60px;
+    }
+    .card-keunggulan h4 {
+      margin: 12px 0 6px;
+      font-weight: 600;
+    }
+    /* mood kategori */
+    .mood-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    .mood-tag {
+      background: white;
+      padding: 10px 24px;
+      border-radius: 60px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      border: 1px solid #eee;
+      transition: 0.1s;
+    }
+    .mood-tag i {
+      margin-right: 8px;
+    }
+    .mood-tag:hover {
+      border-color: var(--yellow);
+      background: var(--yellow-light);
+    }
+    /* filter harga */
+    .filter-wrap {
+      background: white;
+      padding: 16px 24px;
+      border-radius: 80px;
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+    }
+    .filter-wrap label {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-wrap input[type="range"] {
+      width: 160px;
+      accent-color: var(--red);
+    }
+    .filter-wrap span {
+      background: var(--yellow);
+      padding: 2px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+    }
+    /* produk grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      padding: 20px 16px 22px;
+      box-shadow: var(--shadow);
+      transition: 0.2s;
+      border: 1px solid #fce9d4;
+      text-align: center;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--yellow);
+    }
+    .product-card .emoji-big {
+      font-size: 3rem;
+      background: #fef3e9;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      margin: 0 auto 12px;
+    }
+    .product-card h4 {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .product-card .mood-label {
+      font-size: 0.8rem;
+      background: var(--yellow-light);
+      padding: 2px 12px;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 4px 0 8px;
+      font-weight: 500;
+    }
+    .price {
+      font-weight: 700;
+      color: var(--red-dark);
+      font-size: 1.2rem;
+    }
+    .price small {
+      font-weight: 400;
+      color: #555;
+      font-size: 0.8rem;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: 0.1s;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .btn-wa:hover {
+      background: #128C7E;
+    }
+    /* tentang, kontak */
+    .about-wrap {
+      background: white;
+      border-radius: 32px;
+      padding: 36px 40px;
+      box-shadow: var(--shadow);
+      border-left: 8px solid var(--yellow);
+    }
+    .contact-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      background: white;
+      border-radius: 32px;
+      padding: 32px 36px;
+      box-shadow: var(--shadow);
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+    }
+    .contact-item i {
+      font-size: 1.6rem;
+      color: var(--red);
+      width: 40px;
+    }
+    .checkout-box {
+      background: white;
+      border-radius: 32px;
+      padding: 28px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--yellow);
+    }
+    .btn-checkout {
+      background: var(--red);
+      padding: 14px 34px;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.1s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-checkout:hover {
+      background: var(--red-dark);
+    }
+    footer {
+      background: #1e1e1e;
+      color: #ddd;
+      padding: 28px 0;
+      margin-top: 40px;
+      border-radius: 40px 40px 0 0;
+      text-align: center;
+    }
+    /* mobile */
+    @media (max-width: 700px) {
+      .hero-text h1 { font-size: 2rem; }
+      .navbar { flex-direction: column; gap: 14px; }
+      .nav-links { justify-content: center; }
+      .filter-wrap { border-radius: 30px; width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container navbar">
+    <div class="logo">MAKOMOOD <span>🌶️</span></div>
+    <div class="nav-links">
+      <a href="#home">Beranda</a>
+      <a href="#catalog">Katalog</a>
+      <a href="#about">Tentang</a>
+      <a href="#checkout">Pembayaran</a>
+      <a href="#contact">Kontak</a>
+      <a href="#catalog" class="nav-cta"><i class="fas fa-bag-shopping"></i> Beli</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home" class="container">
+    <div class="hero">
+      <div class="hero-text">
+        <h1>Rasakan <span class="highlight">Mood</span> dalam setiap gigitan</h1>
+        <p><strong>MAKOMOOD</strong> — makaroni mix rasa mulai 5 Ribu Rupiah. Pedas, manis, asin, dan unik. Temukan flavor yang cocok dengan suasana hatimu! 🌈</p>
+        <a href="#catalog" class="hero-cta"><i class="fas fa-bolt"></i> Pilih Rasa Sekarang</a>
+        <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <span class="badge-red"><i class="fas fa-fire"></i> Pedas level up</span>
+          <span class="badge-red" style="background: var(--yellow); color: #222;"><i class="fas fa-star"></i> 5K mulai</span>
+        </div>
+      </div>
+      <div class="hero-img">
+        <i class="fas fa-utensils"></i>  🌽🔥  <i class="fas fa-pepper-hot"></i>
+      </div>
+    </div>
+
+    <!-- keunggulan -->
+    <div style="margin-top: 40px;">
+      <div class="section-title"><i class="fas fa-medal"></i> Keunggulan MAKOMOOD</div>
+      <div class="grid-3">
+        <div class="card-keunggulan"><i class="fas fa-pepper-hot"></i><h4>Pedas & Unik</h4><p>Balado, jagung manis, hingga BBQ – semua ada!</p></div>
+        <div class="card-keunggulan"><i class="fas fa-hand-holding-heart"></i><h4>Harga Rakyat</h4><p>Mulai 5.000, cocok untuk semua mood.</p></div>
+        <div class="card-keunggulan"><i class="fas fa-truck-fast"></i><h4>Kirim Cepat</h4><p>Pesanan diproses dan dikirim hari itu juga.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KATALOG -->
+  <section id="catalog" class="container">
+    <div class="section-title"><i class="fas fa-box-open"></i> Katalog Makaroni</div>
+    <!-- mood tags -->
+    <div class="mood-grid">
+      <span class="mood-tag"><i class="fas fa-heart" style="color:#e91e63;"></i> Happy → Cheese</span>
+      <span class="mood-tag"><i class="fas fa-fire" style="color:#d32f2f;"></i> Hype → Spicy</span>
+      <span class="mood-tag"><i class="fas fa-leaf" style="color:#2e7d32;"></i> Chill → Seaweed</span>
+      <span class="mood-tag"><i class="fas fa-sun" style="color:#f9a825;"></i> Sunny → Corn</span>
+      <span class="mood-tag"><i class="fas fa-skull" style="color:#1e1e1e;"></i> Bold → BBQ</span>
+    </div>
+    <!-- filter harga -->
+    <div class="filter-wrap">
+      <label><i class="fas fa-sliders-h"></i> Filter harga: </label>
+      <input type="range" id="priceFilter" min="5000" max="15000" step="1000" value="15000">
+      <span id="priceDisplay">≤ Rp 15.000</span>
+      <span style="font-size:0.9rem; color:#555;"><i class="fas fa-arrow-right"></i> geser</span>
+    </div>
+    <!-- produk grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- data produk akan diisi JS -->
+    </div>
+    <p style="margin-top: 20px; font-style: italic; color: #7a5a3a;"><i class="fas fa-info-circle"></i> Klik tombol WA untuk order langsung.</p>
+  </section>
+
+  <!-- TENTANG -->
+  <section id="about" class="container">
+    <div class="section-title"><i class="fas fa-store-alt"></i> Tentang MAKOMOOD</div>
+    <div class="about-wrap">
+      <p style="font-size: 1.15rem; max-width: 700px;"><strong>Cerita kami:</strong> Berawal dari kecintaan pada camilan yang punya karakter, MAKOMOOD lahir di dapur kecil Desa Telang. Kami ingin menghadirkan makaroni dengan rasa yang <strong>berani</strong> — pedas membara, manis menggoda, dan gurih bikin ketagihan. Setiap kemasan dibuat dengan bahan berkualitas, tanpa pengawet, dan penuh cinta. Karena kami percaya, <strong>setiap mood punya rasa</strong> ❤️🌽🔥</p>
+      <div style="margin-top: 20px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <span class="badge-red" style="background: var(--red-dark);"><i class="fas fa-check-circle"></i> 100% halal</span>
+        <span class="badge-red" style="background: #f57c00;"><i class="fas fa-seedling"></i> Bahan alami</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT / PEMBAYARAN -->
+  <section id="checkout" class="container">
+    <div class="section-title"><i class="fas fa-credit-card"></i> Pembayaran & Checkout</div>
+    <div class="checkout-box">
+      <div>
+        <h3 style="display: flex; gap: 10px;"><i class="fas fa-shopping-cart" style="color: var(--red);"></i> Konfirmasi pesanan</h3>
+        <p style="margin: 8px 0;">Klik tombol untuk chat WhatsApp kami, atau tambahkan ke keranjang (simulasi).</p>
+      </div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="https://wa.me/628383841394780?text=Halo%20MAKOMOOD%2C%20saya%20mau%20order%20makaroni%20mix%20rasa!" target="_blank" class="btn-checkout" style="background: #25D366;"><i class="fab fa-whatsapp"></i> Order via WA</a>
+        <button class="btn-checkout" style="background: #fbc02d; color: #1e1e1e;" onclick="alert('🛒 Keranjang (simulasi): produk ditambahkan! Silakan lanjut ke WA untuk konfirmasi.')"><i class="fas fa-cart-plus"></i> Keranjang</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK & LOKASI -->
+  <section id="contact" class="container">
+    <div class="section-title"><i class="fas fa-address-card"></i> Kontak & Lokasi</div>
+    <div class="contact-wrap">
+      <div style="flex:1; min-width:200px;">
+        <div class="contact-item"><i class="fab fa-whatsapp"></i> <span>0838-3841-394780</span></div>
+        <div class="contact-item"><i class="fas fa-envelope"></i> <span>devikawulandari62@gmail.com</span></div>
+        <div class="contact-item"><i class="fas fa-map-pin"></i> <span>Desa Telang, Kec. Kamal, Kab. Bangkalan</span></div>
+      </div>
+      <div style="background: #f5e6d3; padding: 12px 24px; border-radius: 40px;">
+        <i class="fas fa-clock" style="color: var(--red);"></i> Buka setiap hari 08.00 - 21.00
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 MAKOMOOD — Your Mood, Your Flavor 🌈  |  Makaroni mix rasa mulai 5K</p>
+    <p style="margin-top: 6px; font-size:0.9rem; opacity:0.7;"><i class="fas fa-heart" style="color: var(--yellow);"></i> Pedas, manis, dan unik untuk setiap suasana hati.</p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // data produk (mood flavor)
+    const products = [
+      { name: 'Cheese Happy', mood: 'Happy → Cheese', emoji: '🧀', price: 5000, category: 'cheese' },
+      { name: 'Spicy Hype', mood: 'Hype → Spicy', emoji: '🌶️', price: 6000, category: 'spicy' },
+      { name: 'Seaweed Chill', mood: 'Chill → Seaweed', emoji: '🌿', price: 7000, category: 'seaweed' },
+      { name: 'Corn Sunny', mood: 'Sunny → Corn', emoji: '🌽', price: 5000, category: 'corn' },
+      { name: 'BBQ Bold', mood: 'Bold → BBQ', emoji: '🍖', price: 8000, category: 'bbq' },
+      { name: 'Balado Fury', mood: 'Hype → Spicy', emoji: '🔥', price: 6500, category: 'spicy' },
+      { name: 'Cheese & Corn', mood: 'Happy & Sunny', emoji: '🧀🌽', price: 9000, category: 'cheese' },
+      { name: 'Spicy BBQ', mood: 'Hype → Bold', emoji: '🌶️🍖', price: 10000, category: 'bbq' },
+    ];
+
+    const grid = document.getElementById('productGrid');
+    const priceFilter = document.getElementById('priceFilter');
+    const priceDisplay = document.getElementById('priceDisplay');
+
+    function renderProducts(maxPrice) {
+      grid.innerHTML = '';
+      const filtered = products.filter(p => p.price <= maxPrice);
+      if (filtered.length === 0) {
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:30px;">Tidak ada produk dalam rentang harga ini, coba geser filter.</p>';
+        return;
+      }
+      filtered.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="emoji-big">${p.emoji}</div>
+          <h4>${p.name}</h4>
+          <span class="mood-label">${p.mood}</span>
+          <div class="price">Rp ${p.price.toLocaleString()} <small>mulai</small></div>
+          <a href="https://wa.me/628383841394780?text=Halo%20MAKOMOOD!%20Saya%20mau%20pesan%20${encodeURIComponent(p.name)}%20(${p.mood})" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Pesan</a>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // filter update
+    function updateFilter() {
+      const val = parseInt(priceFilter.value);
+      priceDisplay.innerText = `≤ Rp ${val.toLocaleString()}`;
+      renderProducts(val);
+    }
+
+    priceFilter.addEventListener('input', updateFilter);
+    // initial
+    renderProducts(15000);
+  })();
+</script>
+</body>
+</html>
